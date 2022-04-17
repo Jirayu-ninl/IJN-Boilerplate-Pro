@@ -1,53 +1,47 @@
 ## TheIceJI-Boilerplate (Pro)
-**update Feb 16, 2022**
+**update Apr 17, 2022**
 
 **NEXT JS** with custom config webpack and Babel
 
 #### Features
 
-- TypeScript support
-- Next Config (NextOffline, NextAnalyzer, Image Optimizer, Path alias)
+- TypeScript
+- Webpack Config
 - Header Config (SEO, Google Tag, Font)
-- Global Context
+- Global State Context
 - Global Layout and CSS
-- Global Config
+- Additional React Hook
+- PWA, Offline caching
 
 #### Additional Dependencies
 
 - Emotion and TailwindCSS
 - Framer Motion
 - GraphQL
-- Eslint
-- Prettier
+- Eslint / Prettier / Stylelint
 
-#### Structure
+#### Path mapping
 
-````
-root/
-├─ app/
-│  ├─ config/
-│  ├─ contexts/
-├─ libs/
-│  ├─ hooks/
-├─ pages/
-├─ public/
-├─ resources/
-│  ├─ content/
-│  │  ├─ global/
-│  ├─ views/
-│  │  ├─ animations/
-│  │  ├─ theme/
-│  │  ├─ pages/
-│  │  │  ├─ (each page)/
-│  │  │  │  ├─ components/
-│  │  │  │  ├─ styles/
-│  │  │  │  ├─ assets/
-│  │  ├─ layouts/
+```   
+@config --- ["app/config"]
+@app/* --- ["app/*"]
+@models/* --- ["app/models/*"]
+@database/* --- ["app/models/database/*"]
+@libs/* --- ["libs/*"]
+@contexts/* --- ["app/contexts/*"]
+@store --- ["app/store"]
+@auth/* --- ["app/auth/*"]
+contents/* --- ["resources/contents/*"]
+views/* --- ["resources/views/*"]
+layouts/* --- ["resources/views/layouts/*"]
+pages/* --- ["resources/views/pages/*"]
+public/* --- ["public/*"]
+
 ````
 
 #### How to run
 
-1. Add you config files at `/app/config`
+1. add your .env
 2. Install
 ````
 yarn
@@ -59,4 +53,4 @@ yarn dev
 
 **STATUS** In development
 
-**VERSION** 1.0.0
+**VERSION** 2.0.0

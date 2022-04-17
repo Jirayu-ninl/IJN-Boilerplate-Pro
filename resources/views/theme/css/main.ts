@@ -32,3 +32,14 @@ const AbsoluteGrid = css`
 
 const CSS = { heroContainer, ParaBG, ParaGrid, AbsoluteGrid }
 export default CSS
+
+// export const Temp = css`
+//   @media (max-width: 1199.98px) {
+//   }
+//   @media (max-width: 991.98px) {
+//   }
+//   @media (max-width: 767.98px) {
+//   }
+//   @media (max-width: 479.98px) {
+//   }
+// `

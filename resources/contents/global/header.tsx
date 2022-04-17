@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { app } from '@config'
 
-const titleDefault = 'iFramework - X'
+const titleDefault = 'IJN Boilerplate Pro'
 const url = 'https://#'
 const descriptionDefault = '#'
 const author = '#'
@@ -26,10 +26,7 @@ const Header = ({
         {/* Search Engine Optimization Meta Tags */}
         <title>{title}</title>
         <meta name='description' content={description} />
-        <meta
-          name='keywords'
-          content='#'
-        />
+        <meta name='keywords' content='#' />
         <meta name='robots' content='index,follow' />
         <meta name='distribution' content='web' />
         {/* 

@@ -1,13 +1,12 @@
 // If such a type existed...
 
 const path = require('path')
-// require("dotenv").config();
 const plugins = require('next-compose-plugins')
+const withPWA = require('next-pwa')
+const runtimeCaching = require('next-pwa/cache')
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
-
-const withOffline = require('next-offline')
 
 const nextConfig = {
   webpack(config, { webpack, dev, isServer }) {
@@ -65,15 +64,17 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  // swcMinify: true,
-  // experimental: {
-  // concurrentFeatures: true,
-  // serverComponents: true,
-  // styledComponents: true
-  // },
+  compiler: {
+    styledComponents: true,
+  },
   images: {
     formats: ['image/avif', 'image/webp'],
     domains: ['media.graphcms.com'],
+  },
+  pwa: {
+    disable: process.env.NODE_ENV !== 'production',
+    dest: 'public',
+    runtimeCaching,
   },
 }
 
@@ -87,39 +88,4 @@ if (process.env.EXPORT !== 'true') {
 
 // const withTM = require('next-transpile-modules')(['three', '@react-three/drei'])
 
-module.exports = plugins(
-  [
-    [
-      withOffline,
-      {
-        workboxOpts: {
-          swDest: process.env.NEXT_EXPORT
-            ? 'service-worker.js'
-            : 'static/service-worker.js',
-          runtimeCaching: [
-            {
-              urlPattern: /^https?.*/,
-              handler: 'NetworkFirst',
-              options: {
-                cacheName: 'offlineCache',
-                expiration: {
-                  maxEntries: 200,
-                },
-              },
-            },
-          ],
-        },
-        async rewrites() {
-          return [
-            {
-              source: '/service-worker.js',
-              destination: '/_next/static/service-worker.js',
-            },
-          ]
-        },
-      },
-    ],
-    withBundleAnalyzer,
-  ],
-  nextConfig
-)
+module.exports = plugins([withBundleAnalyzer, withPWA], nextConfig)

@@ -9,14 +9,16 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 })
 
 const nextConfig = {
-  webpack(config, { webpack, dev, isServer }) {
+  webpack(config, { webpack, isServer }) {
     config.plugins.push(
       new webpack.ProvidePlugin({
         React: 'react',
       })
     )
 
+    config.resolve.alias['@app'] = path.join(__dirname, 'app')
     config.resolve.alias['@config'] = path.join(__dirname, 'app/config')
+    config.resolve.alias['@auth'] = path.join(__dirname, 'app/auth')
     config.resolve.alias['contents'] = path.join(
       __dirname,
       'resources/contents'
@@ -37,7 +39,7 @@ const nextConfig = {
     )
     config.resolve.alias['@libs'] = path.join(__dirname, 'libs')
     config.resolve.alias['@contexts'] = path.join(__dirname, 'app/contexts')
-    config.resolve.alias['@redux'] = path.join(__dirname, 'app/redux')
+    config.resolve.alias['@store'] = path.join(__dirname, 'app/store')
     config.resolve.alias['public'] = path.join(__dirname, 'public')
 
     // audio support
